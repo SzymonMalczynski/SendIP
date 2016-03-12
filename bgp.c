@@ -72,29 +72,29 @@ typedef enum {
  * Options
  */
 sendip_option bgp_opts[] = {
-	{ "m", TRUE, "BGP Marker field (format is <hex byte>:<hex byte>:...)", 
+	{ "m", "marker", TRUE, "BGP Marker field (format is <hex byte>:<hex byte>:...)", 
 	  "FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF" },
-	{ "l", TRUE, "Packet length", "Correct" },
-	{ "t", TRUE, "Message Type (1 OPEN, 2 UPDATE, 3 NOTIFICATION, 4 "
+	{ "l", "length", TRUE, "Packet length", "Correct" },
+	{ "t", "type", TRUE, "Message Type (1 OPEN, 2 UPDATE, 3 NOTIFICATION, 4 "
 	  "KEEPALIVE",
 	  "4 (KEEPALIVE)" },
-	{ "o", TRUE, "Open message.  Format is <version>:<AS number>:"
+	{ "o", "open", TRUE, "Open message.  Format is <version>:<AS number>:"
 	  "<Hold time>:<BGP Identifier>:<Options length>", 
 	  "4:1:90:127.0.0.1:Correct  (Any parameter can be omitted to get "
 	  "the default)" },
-	{ "oo", TRUE, "Optional OPEN parameter.  Format is <Type>:<Length>:"
+	{ "oo", "open_parm", TRUE, "Optional OPEN parameter.  Format is <Type>:<Length>:"
 	  "<Value>   - value is in hex bytes separated by :s", 
 	  "Length may be omitted to get correct value" },
-	{ "ul", TRUE, "Withdrawn routes length", "Correct" },
-	{ "uw", TRUE, "Withdrawn route.  Format is x.x.x.x/n:<bytes "
+	{ "ul", "withdrawn_length", TRUE, "Withdrawn routes length", "Correct" },
+	{ "uw", "withdrawn", TRUE, "Withdrawn route.  Format is x.x.x.x/n:<bytes "
 	  "for prefix>", 
 	  "Bytes field may be omitted to use the correct number" },
-	{ "us", TRUE, "Attributes length", "Correct" },
-	{ "ua", TRUE, "Attribute.  Format is <flags>:<type>:"
+	{ "us", "attribs_length", TRUE, "Attributes length", "Correct" },
+	{ "ua", "attribute", TRUE, "Attribute.  Format is <flags>:<type>:"
 	  "<length length (1 or 2):<length>:<data>", 
 	  "The length fields may be omitted to use the correct value" },
-	{ "un", TRUE, "NLRI Prefix.  Format is as for -buw", "As for -buw" },
-	{ "n", TRUE, "Notification.  Format is <code>:<subcode>:<data>", 
+	{ "un", "nlri", TRUE, "NLRI Prefix.  Format is as for -buw", "As for -buw" },
+	{ "n", "notification", TRUE, "Notification.  Format is <code>:<subcode>:<data>", 
 	  "Data may be omitted for no data" },
 };
 

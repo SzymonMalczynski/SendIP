@@ -12,10 +12,10 @@ CFLAGS=	-fPIC -fsigned-char -pipe -Wall -Wpointer-arith -Wwrite-strings \
 			-Wstrict-prototypes -Wnested-externs -Winline -Werror -g -Wcast-align \
 			-DSENDIP_LIBS=\"$(LIBDIR)\"
 #-Wcast-align causes problems on solaris, but not serious ones
-LDFLAGS=	-g -rdynamic -lm
-#LDFLAGS_SOLARIS= -g -lsocket -lnsl -lm
-LDFLAGS_SOLARIS= -g -lsocket -lnsl -lm -ldl
-LDFLAGS_LINUX= -g  -rdynamic -ldl -lm
+LDFLAGS_GLOBAL= -g  -lm -lexpat
+LDFLAGS_SOLARIS= -lsocket -lnsl -ldl $(LDFLAGS_GLOBAL)
+LDFLAGS_LINUX= -rdynamic -ldl $(LDFLAGS_GLOBAL)
+LDFLAGS_OTHER= -rdynamic $(LDFLAGS_GLOBAL)
 LIBCFLAGS= -shared
 CC=	gcc
 
@@ -30,13 +30,13 @@ GLOBALOBJS= csum.o compact.o
 all:	$(GLOBALOBJS) sendip $(PROTOS) sendip.1 sendip.spec
 
 #there has to be a nice way to do this
-sendip:	sendip.o	gnugetopt.o gnugetopt1.o compact.o
+sendip:	sendip.o	gnugetopt.o gnugetopt1.o compact.o sendip_xml.o
 	sh -c "if [ `uname` = Linux ] ; then \
 $(CC) -o $@ $(LDFLAGS_LINUX) $(CFLAGS) $+ ; \
 elif [ `uname` = SunOS ] ; then \
 $(CC) -o $@ $(LDFLAGS_SOLARIS) $(CFLAGS) $+ ;\
 else \
-$(CC) -o $@ $(LDFLAGS) $(CFLAGS) $+ ; \
+$(CC) -o $@ $(LDFLAGS_OTHER) $(CFLAGS) $+ ; \
 fi"
 
 sendip.1:	./help2man $(PROGS) $(PROTOS) VERSION

@@ -1,5 +1,5 @@
 /* compact.c - function to convert hex/octal/decimal/raw string to raw
- * ChangeLog since initial release in sendip 2.1.
+ * ChangeLog since 2.1 release:
  */
 #include <stdio.h>
 #include <string.h>

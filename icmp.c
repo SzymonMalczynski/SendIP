@@ -10,6 +10,8 @@
  * 16/04/2002: Move ipv6_pseudo_header into ipv6.h so tcp.c and udp.c can get it
  * ChangeLog since 2.4 release:
  * 21/04/2003: Fix errors detected by valgrind
+ * ChangeLog since 2.6 release:
+ * 29/11/2005: Add identification and sequence number to headed - xercore <xercore@gmx.de>
  */
 
 #include <sys/types.h>
@@ -93,6 +95,14 @@ bool do_opt(char *opt, char *arg, sendip_data *pack) {
 	case 'c':
 		icp->check = htons((u_int16_t)strtoul(arg, (char **)NULL, 0));
 		pack->modified |= ICMP_MOD_CHECK;
+		break;
+	case 'i':
+	        icp->id = htons((u_int16_t)strtoul(arg, (char **)NULL, 0));
+		pack->modified |= ICMP_MOD_ID;
+		break;
+	case 's':
+                icp->sequence = htons((u_int16_t)strtoul(arg, (char **)NULL, 0));
+		pack->modified |= ICMP_MOD_SEQ;
 		break;
 	}
 	return TRUE;

@@ -50,15 +50,15 @@ typedef struct {
 /* Options
  */
 sendip_option ipv6_opts[] = {
-	{"f",1,"IPv6 flow ID","32"},
-	{"t",1,"IPv6 traffic class","0"},
-	{"l",1,"IPv6 payload length","Correct"},
-	{"n",1,"IPv6 next header","IPPROTO_NONE"},
-	{"h",1,"IPv6 hop limit","32"},
-	{"v",1,"IP version (you probably don't want to change this"},
-	{"p",1,"IPv6 priority","0"},
-	{"s",1,"IPv6 source address","::1"},
-	{"d",1,"IPv6 destination address","Correct"}
+	{"f","flow",1,"IPv6 flow ID","32"},
+	{"t","class",1,"IPv6 traffic class","0"},
+	{"l","length",1,"IPv6 payload length","Correct"},
+	{"n","proto",1,"IPv6 next header","IPPROTO_NONE"},
+	{"h","hop",1,"IPv6 hop limit","32"},
+	{"v","version",1,"IP version (you probably don't want to change this"},
+	{"p","priority",1,"IPv6 priority","0"},
+	{"s","source",1,"IPv6 source address","::1"},
+	{"d","dest",1,"IPv6 destination address","Correct"}
 };
 
 #endif  /* _SENDIP_IPV6_H */
